@@ -1,7 +1,7 @@
 
-//This component is used to represent 1 card in a player's hand
-
 import { getCardSvg } from "../utils";
+
+//This component is used to represent 1 card in a player's hand
 
 function Card(cardProps) {
   let rank = cardProps.rank;
