@@ -29,7 +29,7 @@ function HandGame() {
   return (
     <div>
       <header>Hello!</header>
-      <div>Welcome to Hand, The Game You Hate!</div>
+      <div>Welcome to Hand, Your favorite game ever!</div>
       <Hand cardsInHand={cards} onAddCard={() => {
         cards.push(addCardToHand());
         console.log(cards)
