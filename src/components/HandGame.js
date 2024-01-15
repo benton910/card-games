@@ -14,15 +14,20 @@ function HandGame() {
   const [cards, setCards] = useState([]);
 
   return (
-    <div>
-      <header>Hello!</header>
-      <div>Welcome to Hand, Your favorite game ever!</div>
-      <Hand cardsInHand={cards}></Hand>
-      <button onClick={() => {
-        cards.push(addCardToHand());
-        setCards([...cards]);
-      }}>
-        Draw a Card</button>
+    <div class="container h-full w-full">
+      <header>
+        Welcome to Hand, Your favorite game ever!
+      </header>
+      <div class="container h-lvh w-full flex flex-col items-center justify-center content-between">
+        <Hand cardsInHand={cards}></Hand>
+        <div class="flex justify-center align-bottom">
+          <button onClick={() => {
+            cards.push(addCardToHand());
+            setCards([...cards]);
+          }}>
+            Draw a Card</button>
+        </div>
+      </div>
     </div>
   )
 }

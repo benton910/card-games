@@ -9,7 +9,7 @@ function Card(cardProps) {
   let cardSvg = getCardSvg(rank, suit);
 
   return (
-    <div>
+    <div class="container flex h-full w-1/15 padding-x">
       <img src={cardSvg} alt="playing card"/>
     </div>
   );

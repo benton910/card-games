@@ -6,8 +6,8 @@ import Card from './Card'
 function Hand({cardsInHand}) {
 
   return (
-    <div class="container flex relative h-32 w-32">
-      <div class="absolute flex flex-row bottom-0 h-16">
+    <div class="container flex items-center justify-center h-1/2 w-full">
+      <div class="flex flex-row h-20">
         {
           cardsInHand.map((card, index) => (
             <Card key={index} rank={card.rank} suit={card.suit}></Card>

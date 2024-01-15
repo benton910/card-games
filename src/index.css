@@ -1,8 +1,39 @@
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Manrope", sans-serif;
+}
 
-html, body, App, #app, #app>div {
+html, body, #root, .App, #app, .App>div, .App>div>div {
   height: 100%
+}
+
+/* START: General styles */
+.max-width {
+  @apply max-w-[1440px] mx-auto;
+}
+
+/* see sm defined here: https://tailwindcss.com/docs/responsive-design */
+/* sm defines utility behavior that only happens at the breakpoint for small screens */
+.padding-x {
+  @apply px-1;
+}
+
+.padding-y {
+  @apply py-1;
+}
+
+.flex-center {
+  @apply flex items-center justify-center;
+}
+
+.flex-between {
+  @apply flex justify-between items-center;
 }
