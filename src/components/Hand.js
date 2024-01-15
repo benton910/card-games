@@ -3,9 +3,7 @@ import Card from './Card'
 
 // This component is used to represent a full hand belonging to a player
 
-function Hand(handProps) {
-  let cardsInHand = handProps.cardsInHand;
-  let onAddCard = handProps.onAddCard;
+function Hand({cardsInHand, onAddCard}) {
 
   return (
     <div className="hand">
@@ -16,7 +14,7 @@ function Hand(handProps) {
           ))
         }
       </div>
-      <button onClick={onAddCard}>
+      <button onClick={() => (onAddCard())}>
         Draw a Card</button>
     </div>
   )

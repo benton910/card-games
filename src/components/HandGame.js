@@ -23,7 +23,7 @@ function HandGame() {
     {
       rank: 12,
       suit: 0
-    }
+    } 
   ])
 
   return (
@@ -32,7 +32,7 @@ function HandGame() {
       <div>Welcome to Hand, Your favorite game ever!</div>
       <Hand cardsInHand={cards} onAddCard={() => {
         cards.push(addCardToHand());
-        console.log(cards)
+        console.log(cards);
         setCards(cards);
       }}></Hand>
     </div>

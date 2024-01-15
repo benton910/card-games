@@ -39,10 +39,12 @@ const suitsMap = {
     //if KD or JS, it's .sva
     let svgRank = cardRanks[rank][0];
     let svgSuit = suitsMap[suit][0];
-    if (svgRank + svgSuit === 'KD' || 'JS') {
+    if (svgRank + svgSuit === ('KD' || 'JS')) {
       return "../../cards/" + svgRank + svgSuit + ".sva"
     }
-    return "../../cards/" + svgRank + svgSuit + ".svg"
+    else {
+      return "../../cards/" + svgRank + svgSuit + ".svg"
+    }
   }
 
   export { getCardSvg, generateRandomCard, cardRanks, suitsMap };
