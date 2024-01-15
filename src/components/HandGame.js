@@ -32,7 +32,6 @@ function HandGame() {
       <div>Welcome to Hand, Your favorite game ever!</div>
       <Hand cardsInHand={cards} onAddCard={() => {
         cards.push(addCardToHand());
-        console.log(cards);
         setCards([...cards]);
       }}></Hand>
     </div>
