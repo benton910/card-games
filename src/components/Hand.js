@@ -3,7 +3,7 @@ import Card from './Card'
 
 // This component is used to represent a full hand belonging to a player
 
-function Hand({cardsInHand, onAddCard}) {
+function Hand({cardsInHand}) {
 
   return (
     <div class="container flex relative h-32 w-32">
@@ -14,8 +14,6 @@ function Hand({cardsInHand, onAddCard}) {
           ))
         }
       </div>
-      <button onClick={() => (onAddCard())}>
-        Draw a Card</button>
     </div>
   )
 }

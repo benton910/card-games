@@ -11,29 +11,18 @@ function addCardToHand() {
 
 function HandGame() {
 
-  const [cards, setCards] = useState([
-    {
-      rank: 1,
-      suit: 2
-    },
-    {
-      rank: 11,
-      suit: 3
-    },
-    {
-      rank: 12,
-      suit: 0
-    } 
-  ])
+  const [cards, setCards] = useState([]);
 
   return (
     <div>
       <header>Hello!</header>
       <div>Welcome to Hand, Your favorite game ever!</div>
-      <Hand cardsInHand={cards} onAddCard={() => {
+      <Hand cardsInHand={cards}></Hand>
+      <button onClick={() => {
         cards.push(addCardToHand());
         setCards([...cards]);
-      }}></Hand>
+      }}>
+        Draw a Card</button>
     </div>
   )
 }
