@@ -6,7 +6,7 @@ import Card from './Card'
 function Hand({cardsInHand}) {
 
   return (
-    <div class="container flex items-center justify-center h-1/2 w-full">
+    <div class="container flex items-end justify-center h-1/3 w-full padding-x pb-4">
       <div class="flex flex-row h-20">
         {
           cardsInHand.map((card, index) => (
