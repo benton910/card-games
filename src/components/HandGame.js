@@ -15,14 +15,14 @@ function HandGame() {
 
   return (
     <div class="container flex flex-col items-center
-    h-full w-full m-0 bg-[url('../public/cards/green_bkgrd.jpg')]">
+    h-full w-full m-0 bg-[url('../public/cards/green_bkgrd.jpg')] bg-cover">
       <div>
         <header>
           Welcome to Hand, Your favorite game ever!
         </header>
         <h1>Click on the deck to draw a card</h1>
       </div>
-      <div class="container h-1/2 w-full flex flex-col 
+      <div class="container h-full w-full flex flex-col 
       items-center justify-end content-between">
         <div class="flex justify-center align-center">
           <button onClick={() => {
