@@ -13,14 +13,14 @@ function addLastHandSpace(cardsArr) {
 }
 
 function Hand() {
-  const [atomCards, setAtomCards] = useAtom(playerHandAtom);
+  const [handCardsAtom, setHandCardsAtom] = useAtom(playerHandAtom);
 
   return (
     <div class="container flex items-end justify-center h-1/3 w-full padding-x pb-4">
       <div class="flex flex-row h-20">
         {
-          atomCards.map((card, cardIdx, handSpaceIdx) => {
-            if (atomCards.length === 1) {
+          handCardsAtom.map((card, cardIdx, handSpaceIdx) => {
+            if (handCardsAtom.length === 1) {
               return(
                 <Card key={cardIdx} rank={card.rank} suit={card.suit}></Card>
               )
@@ -35,7 +35,7 @@ function Hand() {
           })
         }
         {
-          addLastHandSpace(atomCards)
+          addLastHandSpace(handCardsAtom)
         }
       </div>
     </div>
