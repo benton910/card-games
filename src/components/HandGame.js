@@ -4,6 +4,8 @@ import Hand from './Hand'
 import { generateRandomCard } from '../utils';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
+import { useAtom } from 'jotai';
+import { playerHandAtom } from '../utils/atoms';
 
 //add an argument to this function that takes in a flag of whether or not it came from burn pile
 function addCardToHand() {
@@ -11,13 +13,11 @@ function addCardToHand() {
   return newCard;
 }
 
-function moveCardInHand(index) {
-  
-}
-
 function HandGame() {
 
   const [cards, setCards] = useState([]);
+
+  const [atomCards, setAtomCards] = useAtom(playerHandAtom);
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -33,13 +33,13 @@ function HandGame() {
         items-center justify-end content-between">
           <div class="flex justify-center align-center">
             <button onClick={() => {
-              cards.push(addCardToHand());
-              setCards([...cards]);
+              atomCards.push(addCardToHand());
+              setAtomCards([...atomCards]);
             }}>
               <img src="../cards/BLUE_BACK.svg" class="flex h-20 w-15"></img>
             </button>
           </div>
-          <Hand cardsInHand={cards} moveCardHand={moveCardInHand()}></Hand>
+          <Hand></Hand>
         </div>
       </div>
     </DndProvider>

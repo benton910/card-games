@@ -1,6 +1,8 @@
 import React from 'react'
 import Card from './Card'
 import HandSpace from './HandSpace'
+import { useAtom } from 'jotai';
+import { playerHandAtom } from '../utils/atoms';
 
 // This component is used to represent a full hand belonging to a player
 
@@ -10,19 +12,15 @@ function addLastHandSpace(cardsArr) {
   }
 }
 
-function Hand({cardsInHand, moveCardHand}) {
-
-  function moveCardHand(index) {
-    cardsInHand.splice(index, 0, cardsInHand[index-1]);
-    console.log(cardsInHand);
-  }
+function Hand() {
+  const [atomCards, setAtomCards] = useAtom(playerHandAtom);
 
   return (
     <div class="container flex items-end justify-center h-1/3 w-full padding-x pb-4">
       <div class="flex flex-row h-20">
         {
-          cardsInHand.map((card, cardIdx, handSpaceIdx) => {
-            if (cardsInHand.length === 1) {
+          atomCards.map((card, cardIdx, handSpaceIdx) => {
+            if (atomCards.length === 1) {
               return(
                 <Card key={cardIdx} rank={card.rank} suit={card.suit}></Card>
               )
@@ -37,7 +35,7 @@ function Hand({cardsInHand, moveCardHand}) {
           })
         }
         {
-          addLastHandSpace(cardsInHand)
+          addLastHandSpace(atomCards)
         }
       </div>
     </div>
