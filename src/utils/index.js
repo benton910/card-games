@@ -34,6 +34,13 @@ const suitsMap = {
       suit: randomSuit 
     }
   }
+
+  function generateCardFromDeck(card) {
+    return { 
+      rank: card[0], 
+      suit: card[-1] 
+    }
+  }
   
   function getCardSvg(rank, suit) {
     //if KD or JS, it's .sva
@@ -47,4 +54,4 @@ const suitsMap = {
     }
   }
 
-  export { getCardSvg, generateRandomCard, cardRanks, suitsMap };
+  export { getCardSvg, generateRandomCard, generateCardFromDeck, cardRanks, suitsMap };

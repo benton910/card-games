@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from "react"
 import Hand from './Hand'
-import { generateRandomCard } from '../utils';
+import { generateRandomCard, generateCardFromDeck } from '../utils';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { useAtom } from 'jotai';
@@ -11,6 +11,16 @@ import { deckAtom, playerHandAtom } from '../utils/atoms';
 function addCardToHand() {
   let newCard = generateRandomCard();
   return newCard;
+}
+
+function drawCardFromDeck(deck) {
+  const cardIdx = Math.floor(Math.random() * deck.length);
+  const drawnCard = generateCardFromDeck([cardIdx]);
+  deck = deck.splice(cardIdx, 1);
+  return {
+    updatedDeck: deck,
+    drwnCard: drawnCard
+  }
 }
 
 function HandGame() {
@@ -32,8 +42,13 @@ function HandGame() {
         items-center justify-end content-between">
           <div class="flex justify-center align-center">
             <button onClick={() => {
+              console.log('before' + deck.length);
+              const cardDraw = drawCardFromDeck(deck);
+              // Need to update this line to account for card we're drawing in above func
               handCardsAtom.push(addCardToHand());
               setHandCardsAtom([...handCardsAtom]);
+              setDeck([...deck]);
+              console.log(deck.length + ': after');
             }}>
               <img src="../cards/BLUE_BACK.svg" class="flex h-20 w-15"></img>
             </button>
