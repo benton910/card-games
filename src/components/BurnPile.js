@@ -36,16 +36,10 @@ function BurnPile() {
     }}>
       <div
       ref={drop}
-      class="flex h-20 w-15"
+      class="flex h-20 w-15 px-3"
       >
         {!pileIsEmpty && <Card rank={burnPile[0].rank} suit={burnPile[0].suit}></Card>}
-        { pileIsEmpty && 
-        <div
-          class="flex h-20 w-15"
-          style={{
-            background: 'blue'
-          }}
-          ></div>
+        { pileIsEmpty && "Burn Pile"
         }
       </div>
     </button>
