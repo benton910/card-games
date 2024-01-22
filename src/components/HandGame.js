@@ -7,7 +7,7 @@ import { useAtom } from 'jotai';
 import { deckAtom, playerHandAtom } from '../utils/atoms';
 import BurnPile from './BurnPile';
 
-//add an argument to this function that takes in a flag of whether or not it came from burn pile
+//add an argument to this function that takes in a flag of whether or not it came from burn pile?
 function addCardToHand() {
   let newCard = generateRandomCard();
   return newCard;
@@ -15,8 +15,10 @@ function addCardToHand() {
 
 function drawCardFromDeck(deck) {
   const cardIdx = Math.floor(Math.random() * deck.length);
-  const drawnCard = generateCardFromDeck([cardIdx]);
-  deck = deck.splice(cardIdx, 1);
+  const drawnCard = deck[cardIdx];
+  console.log(drawnCard);
+  console.log(deck);
+  deck.splice(cardIdx, 1);
   return {
     updatedDeck: deck,
     drwnCard: drawnCard
@@ -27,6 +29,9 @@ function HandGame() {
 
   const [handCardsAtom, setHandCardsAtom] = useAtom(playerHandAtom);
   const [deck, setDeck] = useAtom(deckAtom);
+
+  let deckIsEmpty = deck.length === 0;
+  let cardDraw;
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -42,16 +47,17 @@ function HandGame() {
         items-center justify-end content-between">
           <div class="flex flex-row justify-center align-center">
             <BurnPile></BurnPile>
-            <button onClick={() => {
-              console.log('before' + deck.length);
-              const cardDraw = drawCardFromDeck(deck);
-              // Need to update this line to account for card we're drawing in above func
-              handCardsAtom.push(addCardToHand());
+            <button
+            disabled = {deckIsEmpty}
+            onClick={() => {
+              console.log('before: ' + deck.length);
+              cardDraw = drawCardFromDeck(deck);
+              handCardsAtom.push(cardDraw.drwnCard);
               setHandCardsAtom([...handCardsAtom]);
-              setDeck([...deck]);
+              setDeck([...cardDraw.updatedDeck]);
               console.log(deck.length + ': after');
             }}>
-              <img src="../cards/BLUE_BACK.svg" class="flex h-20 w-15"></img>
+              <img src="../cards/BLUE_BACK.svg" class="flex h-20 w-15" alt="deck"></img>
             </button>
           </div>
           <Hand></Hand>
