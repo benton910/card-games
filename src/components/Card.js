@@ -7,11 +7,12 @@ import { useDrag } from 'react-dnd'
 function Card(cardProps) {
   let rank = cardProps.rank;
   let suit = cardProps.suit;
+  let key = cardProps.key;
   let cardSvg = getCardSvg(rank, suit);
 
   const [{isDragging}, drag] = useDrag({
     type: ItemTypes.CARD,
-    item: {rank, suit},
+    item: {rank, suit, key},
     collect: (monitor) => ({
       isDragging: monitor.isDragging()
     })

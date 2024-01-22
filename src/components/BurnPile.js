@@ -1,8 +1,7 @@
 import { useDrop } from 'react-dnd';
 import { ItemTypes } from '../utils/modules';
 import { useAtom } from 'jotai';
-import { burnPileAtom } from '../utils/atoms';
-import { getCardSvg } from '../utils';
+import { burnPileAtom, playerHandAtom } from '../utils/atoms';
 import Card from './Card';
 
 //This component is used to represent the drop target spaces between each card
@@ -10,18 +9,24 @@ import Card from './Card';
 
 function BurnPile() {
   const [burnPile, setBurnPile] = useAtom(burnPileAtom);
+  const [handCardsAtom, setHandCardsAtom] = useAtom(playerHandAtom);
 
   const [{ isOver }, drop] = useDrop({
     accept: ItemTypes.CARD,
-    drop: (card) => setBurnPile([card, ...burnPile]),
+    drop: (card) => {
+      const cardHandIdx = handCardsAtom.findIndex(
+        (itm) => itm.rank == card.rank && itm.suit == card.suit
+      );
+      if (cardHandIdx != -1) {
+        handCardsAtom.splice(cardHandIdx, 1);
+      }
+      setBurnPile([card, ...burnPile]);
+      setHandCardsAtom([...handCardsAtom]);
+    },
     collect: monitor => ({
       isOver: !!monitor.isOver(),
     })
   })
-
-  let dummyCard = {
-    rank: 2, suit: 2
-  }
 
   let pileIsEmpty = burnPile.length < 1 ? true : false;
 
@@ -31,12 +36,17 @@ function BurnPile() {
     }}>
       <div
       ref={drop}
-      class="flex h-full w-10"
-      style={{
-        background:'blue'
-      }}
+      class="flex h-20 w-15"
       >
         {!pileIsEmpty && <Card rank={burnPile[0].rank} suit={burnPile[0].suit}></Card>}
+        { pileIsEmpty && 
+        <div
+          class="flex h-20 w-15"
+          style={{
+            background: 'blue'
+          }}
+          ></div>
+        }
       </div>
     </button>
   );
