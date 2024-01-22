@@ -1,11 +1,11 @@
 import React from 'react'
-import { useState } from "react"
 import Hand from './Hand'
 import { generateRandomCard, generateCardFromDeck } from '../utils';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { useAtom } from 'jotai';
 import { deckAtom, playerHandAtom } from '../utils/atoms';
+import BurnPile from './BurnPile';
 
 //add an argument to this function that takes in a flag of whether or not it came from burn pile
 function addCardToHand() {
@@ -40,7 +40,8 @@ function HandGame() {
         </div>
         <div class="container h-full w-full flex flex-col 
         items-center justify-end content-between">
-          <div class="flex justify-center align-center">
+          <div class="flex flex-row justify-center align-center">
+            <BurnPile></BurnPile>
             <button onClick={() => {
               console.log('before' + deck.length);
               const cardDraw = drawCardFromDeck(deck);

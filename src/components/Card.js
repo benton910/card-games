@@ -9,12 +9,13 @@ function Card(cardProps) {
   let suit = cardProps.suit;
   let cardSvg = getCardSvg(rank, suit);
 
-  const [{isDragging}, drag] = useDrag(() => ({
+  const [{isDragging}, drag] = useDrag({
     type: ItemTypes.CARD,
+    item: {rank, suit},
     collect: (monitor) => ({
-      isDragging: !!monitor.isDragging()
-    }),
-  }))
+      isDragging: monitor.isDragging()
+    })
+  })
 
   return (
     <div ref={drag} class="container flex h-full w-1/15">

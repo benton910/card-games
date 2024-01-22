@@ -43,7 +43,6 @@ const suitsMap = {
   }
   
   function getCardSvg(rank, suit) {
-    //if KD or JS, it's .sva
     let svgRank = cardRanks[rank][0];
     let svgSuit = suitsMap[suit][0];
     if (svgRank + svgSuit === ('KD' || 'JS')) {

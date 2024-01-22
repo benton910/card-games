@@ -1,6 +1,6 @@
 import { atom } from "jotai";
 
-export const playerHandAtom = atom([
+const playerHandAtom = atom([
     {
       rank: 1,
       suit: 2
@@ -15,7 +15,7 @@ export const playerHandAtom = atom([
     } 
   ]);
 
-  export const deckAtom = atom([
+ const deckAtom = atom([
     "AC", "AD", "AH", "AS", 
     "2C", "2D", "2H", "2S",
     "3C", "3D", "3H", "3S",
@@ -44,4 +44,13 @@ export const playerHandAtom = atom([
     "QC", "QD", "QH", "QS",
     "KC", "KD", "KH", "KS",
     "Joker", "Joker",
-  ])
+  ]);
+
+  const burnPileAtom = atom([
+    {
+      rank: 1,
+      suit: 2
+    }
+  ]);
+
+  export { playerHandAtom, deckAtom, burnPileAtom }
