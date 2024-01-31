@@ -56,6 +56,28 @@ function generateRandomCard() {
   }
 }
 
+// Generating a card object { rank: , suit: } out of numerical representation
+// of card. ex) card = 40 returns a 4 of clubs.
+function generateCardFromNumberRep(cardNum) {
+  const cardIDArr = cardNum.toString().split("");
+  let rank;
+  let suit;
+  if (cardIDArr.length < 3) {
+    rank = cardIDArr[0];
+    suit = cardIDArr[1];
+  } else if (cardIDArr.length < 4) {
+    rank = cardIDArr[0] + cardIDArr[1];
+    suit = cardIDArr[2];
+  } else {
+    rank = 15;
+    suit = cardIDArr[5];
+  }
+  return {
+    rank: rank,
+    suit: suit
+  }
+}
+
 // Card here is an entry from our deckAtom, in format "RS" (Rank + Suit)
 //  ex) card = "QS"
 function generateCardFromDeck(card) {
@@ -87,4 +109,4 @@ function getCardSvg(rank, suit) {
   return "../../cards/" + svgRank + svgSuit + ".svg"
 }
 
-  export { getCardSvg, generateRandomCard, generateCardFromDeck, cardRanks, suitsMap };
+  export { getCardSvg, generateRandomCard, generateCardFromDeck, generateCardFromNumberRep, cardRanks, suitsMap };

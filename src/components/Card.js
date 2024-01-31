@@ -5,14 +5,14 @@ import { useDrag } from 'react-dnd'
 //This component is used to represent 1 card in a player's hand
 
 function Card(cardProps) {
+  let idx = cardProps.idx;
   let rank = cardProps.rank;
   let suit = cardProps.suit;
-  let key = cardProps.key;
   let cardSvg = getCardSvg(rank, suit);
 
   const [{isDragging}, drag] = useDrag({
     type: ItemTypes.CARD,
-    item: {rank, suit, key},
+    item: {rank, suit, idx},
     collect: (monitor) => ({
       isDragging: monitor.isDragging()
     })

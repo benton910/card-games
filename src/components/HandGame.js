@@ -14,8 +14,7 @@ function takeCardFromBurnPile() {
 function drawCardFromDeck(deck) {
   const cardIdx = Math.floor(Math.random() * deck.length);
   const drawnCard = deck[cardIdx];
-  console.log(drawnCard);
-  console.log(deck);
+  console.log("drawnCard: " + drawnCard.rank + drawnCard.suit)
   deck.splice(cardIdx, 1);
   return {
     updatedDeck: deck,
@@ -48,12 +47,10 @@ function HandGame() {
             <button
             disabled = {deckIsEmpty}
             onClick={() => {
-              console.log('before: ' + deck.length);
               cardDraw = drawCardFromDeck(deck);
               handCardsAtom.push(cardDraw.drwnCard);
               setHandCardsAtom([...handCardsAtom]);
               setDeck([...cardDraw.updatedDeck]);
-              console.log(deck.length + ': after');
             }}>
               <img src="../cards/BLUE_BACK.svg" class="flex h-20 w-15" alt="deck"></img>
             </button>
